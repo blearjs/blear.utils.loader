@@ -110,6 +110,7 @@ var load = function (tagName, options, callback) {
 
         case 'img':
             node.src = url;
+            node.crossOrigin = 'anonymous';
             break;
     }
 
