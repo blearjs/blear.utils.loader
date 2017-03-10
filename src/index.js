@@ -109,8 +109,8 @@ var load = function (tagName, options, callback) {
             break;
 
         case 'img':
-            node.src = url;
             node.crossOrigin = 'anonymous';
+            node.src = url;
             break;
     }
 
