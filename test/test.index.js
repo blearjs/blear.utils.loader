@@ -44,12 +44,14 @@ describe('index.js', function () {
         loader.img({
             url: url,
             timeout: 5000,
+            crossOrigin: true,
             destroy: false
         }, function (err) {
             if (!err) {
                 expect(this.src).not.toBe(undefined);
                 expect(this.width).not.toBe(undefined);
                 expect(this.height).not.toBe(undefined);
+                expect(this.crossOrigin).toBe('anonymous');
             }
 
             console.log(this, 'this.complete', this.complete);
