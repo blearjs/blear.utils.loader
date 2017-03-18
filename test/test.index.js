@@ -41,9 +41,7 @@ describe('index.js', function () {
 
     it('.img', function (done) {
         var url = 'http://www.dangkr.com/static/img/5-s.jpg';
-        var node = new Image();
         loader.img({
-            node: node,
             url: url,
             timeout: 5000,
             crossOrigin: true,
