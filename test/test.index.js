@@ -73,7 +73,7 @@ describe('index.js', function () {
                 done();
             });
         });
-    });
+    }, 5000);
 
     it('.img', function (done) {
         loader.img({
@@ -85,7 +85,7 @@ describe('index.js', function () {
 
             done();
         });
-    });
+    }, 5000);
 
     it('.img abort', function (done) {
         var ld = loader.img({
