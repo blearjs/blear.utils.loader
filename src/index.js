@@ -10,6 +10,12 @@ var doc = document;
 var REG_LOAD_COMPLETE = /loaded|complete/;
 var defaults = {
     /**
+     * 节点
+     * @type Node|null
+     */
+    node: null,
+
+    /**
      * 链接地址
      * @type string
      */
@@ -54,8 +60,7 @@ var load = function (tagName, options, callback) {
     var url = options.url;
     var timeout = options.timeout;
     var isImageNode = tagName === 'img';
-    var node = isImageNode ? new Image() : doc.createElement(tagName);
-
+    var node = options.node || (isImageNode ? new Image() : doc.createElement(tagName));
     var timeid = 0;
 
     if (timeout > 0) {

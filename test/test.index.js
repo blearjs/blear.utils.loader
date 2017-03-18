@@ -12,7 +12,7 @@ var loader = require('../src/index.js');
 describe('index.js', function () {
     it('.js', function (done) {
         loader.js({
-            url: 'http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js',
+            url: '//cdn.bootcss.com/jquery/1.2.3/jquery.min.js',
             timeout: 5000
         }, function (err) {
             if (!err) {
@@ -21,7 +21,7 @@ describe('index.js', function () {
 
             done();
         });
-    });
+    }, 5000);
 
 
     it('.css', function (done) {
@@ -41,7 +41,9 @@ describe('index.js', function () {
 
     it('.img', function (done) {
         var url = 'http://www.dangkr.com/static/img/5-s.jpg';
+        var node = new Image();
         loader.img({
+            node: node,
             url: url,
             timeout: 5000,
             crossOrigin: true,
@@ -70,7 +72,7 @@ describe('index.js', function () {
 
                 var time2 = new Date().getTime();
 
-                expect(time2 - time1).toBeLessThan(1000);
+                expect(time2 - time1).toBeLessThan(5000);
 
                 done();
             });
