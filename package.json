@@ -1,6 +1,6 @@
 {
   "name": "blear.utils.loader",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "loader utils",
   "scripts": {
     "live": "browser-sync start --config bs-config.js",
@@ -43,6 +43,7 @@
   },
   "peerDependencies": {},
   "devDependencies": {
+    "coolie.js": "^2.1.6",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^1.0.1",

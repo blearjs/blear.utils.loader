@@ -1,9 +1,9 @@
 'use strict';
 
-var typeis =   require('blear.utils.typeis');
-var time =     require('blear.utils.time');
-var fun =      require('blear.utils.function');
-var object =   require('blear.utils.object');
+var typeis = require('blear.utils.typeis');
+var time = require('blear.utils.time');
+var fun = require('blear.utils.function');
+var object = require('blear.utils.object');
 
 var win = window;
 var doc = document;
@@ -20,6 +20,12 @@ var defaults = {
      * @type number
      */
     timeout: 10000,
+
+    /**
+     * 是否跨域
+     * @type Boolean
+     */
+    crossOrigin: false,
 
     /**
      * 是否销毁节点
@@ -109,7 +115,10 @@ var load = function (tagName, options, callback) {
             break;
 
         case 'img':
-            node.crossOrigin = 'anonymous';
+            if (options.crossOrigin) {
+                node.crossOrigin = 'anonymous';
+            }
+
             node.src = url;
             break;
     }
