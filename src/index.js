@@ -73,7 +73,7 @@ var load = function (tagName, options, callback) {
     var cleanup = fun.once(function () {
         node.onload = node.onerror = node.onreadystatechange = null;
 
-        if (!isImageNode && options.destroy) {
+        if (options.destroy) {
             doc.body.removeChild(node);
         }
 
@@ -135,9 +135,17 @@ var load = function (tagName, options, callback) {
         };
     }
 
-    if (!isImageNode) {
-        doc.body.appendChild(node);
+    // ios：拍照产生的图片，如果没有插入的 DOM 中获取到的图片尺寸是相反的
+    if (isImageNode) {
+        style(node, {
+            visibility: 'hidden',
+            position: 'absolute',
+            top: '-99999px',
+            left: '-99999px'
+        });
     }
+
+    doc.body.appendChild(node);
 
     if (isImageNode && node.complete) {
         time.nextTick(onCallback);
@@ -183,3 +191,11 @@ exports.img = function (options, callback) {
 
 
 exports.defaults = defaults;
+
+// =====================================
+
+function style(el, styles) {
+    object.each(styles, function (key, val) {
+        el.style[key] = val;
+    });
+}
