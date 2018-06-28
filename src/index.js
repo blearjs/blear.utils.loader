@@ -100,6 +100,8 @@ var load = function (tagName, options, callback) {
 
             if (isImageNode && node) {
                 exportNode = new Image();
+                exportNode.width = node.width;
+                exportNode.height = node.height;
                 exportNode.src = node.src;
             }
 
@@ -148,7 +150,15 @@ var load = function (tagName, options, callback) {
             visibility: 'hidden',
             position: 'absolute',
             top: '-99999%',
-            left: '-99999%'
+            left: '-99999%',
+            maxWidth: 'none',
+            maxHeight: 'none',
+            border: 0,
+            width: 'auto',
+            height: 'auto',
+            margin: 0,
+            padding: 0,
+            transform: ''
         });
     }
 
