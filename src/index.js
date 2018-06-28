@@ -54,7 +54,7 @@ var load = function (tagName, options, callback) {
     var url = options.url;
     var timeout = options.timeout;
     var isImageNode = tagName === 'img';
-    var node = isImageNode ? new Image() : doc.createElement(tagName);
+    var node = doc.createElement(tagName);
     var timeid = 0;
 
     if (timeout > 0) {
@@ -73,7 +73,7 @@ var load = function (tagName, options, callback) {
     var cleanup = fun.once(function () {
         node.onload = node.onerror = node.onreadystatechange = null;
 
-        if (!isImageNode && options.destroy) {
+        if (options.destroy) {
             doc.body.removeChild(node);
         }
 
@@ -96,7 +96,14 @@ var load = function (tagName, options, callback) {
         }
 
         if (typeis.Function(callback)) {
-            callback.call(node, err, node);
+            var exportNode = node;
+
+            if (isImageNode && node) {
+                exportNode = new Image();
+                exportNode.src = node.src;
+            }
+
+            callback.call(exportNode, err, exportNode);
         }
 
         cleanup();
