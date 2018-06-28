@@ -140,8 +140,8 @@ var load = function (tagName, options, callback) {
         style(node, {
             visibility: 'hidden',
             position: 'absolute',
-            top: '-99999px',
-            left: '-99999px'
+            top: '-99999%',
+            left: '-99999%'
         });
     }
 
