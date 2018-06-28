@@ -26,7 +26,7 @@ describe('index.js', function () {
 
     it('.css', function (done) {
         loader.css({
-            url: 'http://s.dangkr.com/@/dangkr-web/static/css/25503eeb6cf139399747b458dc5076b7.css',
+            url: 'https://at.alicdn.com/t/font_536737_dvwpun81ta10pb9.css',
             timeout: 5000,
             destroy: false
         }, function (err) {
@@ -40,46 +40,8 @@ describe('index.js', function () {
 
 
     it('.img', function (done) {
-        var url = 'http://www.dangkr.com/static/img/5-s.jpg';
         loader.img({
-            url: url,
-            timeout: 5000,
-            crossOrigin: true,
-            destroy: false
-        }, function (err) {
-            if (!err) {
-                expect(this.src).not.toBe(undefined);
-                expect(this.width).not.toBe(undefined);
-                expect(this.height).not.toBe(undefined);
-                expect(this.crossOrigin).toBe('anonymous');
-            }
-
-            console.log(this, 'this.complete', this.complete);
-
-            var time1 = new Date().getTime();
-            loader.img({
-                url: url,
-                timeout: 5000,
-                destroy: false
-            }, function (err) {
-                if (!err) {
-                    expect(this.src).not.toBe(undefined);
-                    expect(this.width).not.toBe(undefined);
-                    expect(this.height).not.toBe(undefined);
-                }
-
-                var time2 = new Date().getTime();
-
-                expect(time2 - time1).toBeLessThan(5000);
-
-                done();
-            });
-        });
-    }, 5000);
-
-    it('.img', function (done) {
-        loader.img({
-            url: 'http://www.dangkr.com/ddd',
+            url: '/',
             timeout: 5000,
             destroy: false
         }, function (err) {
