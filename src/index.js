@@ -96,16 +96,7 @@ var load = function (tagName, options, callback) {
         }
 
         if (typeis.Function(callback)) {
-            var exportNode = node;
-
-            if (isImageNode && node) {
-                exportNode = new Image();
-                exportNode.width = node.width;
-                exportNode.height = node.height;
-                exportNode.src = node.src;
-            }
-
-            callback.call(exportNode, err, exportNode);
+            callback.call(node, err, node);
         }
 
         cleanup();
@@ -144,25 +135,9 @@ var load = function (tagName, options, callback) {
         };
     }
 
-    // ios：拍照产生的图片，如果没有插入的 DOM 中获取到的图片尺寸是相反的
-    if (isImageNode) {
-        style(node, {
-            visibility: 'hidden',
-            position: 'absolute',
-            top: '-99999%',
-            left: '-99999%',
-            maxWidth: 'none',
-            maxHeight: 'none',
-            border: 0,
-            width: 'auto',
-            height: 'auto',
-            margin: 0,
-            padding: 0,
-            transform: ''
-        });
+    if (!isImageNode) {
+        doc.body.appendChild(node);
     }
-
-    doc.body.appendChild(node);
 
     if (isImageNode && node.complete) {
         time.nextTick(onCallback);
