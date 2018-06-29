@@ -73,7 +73,7 @@ var load = function (tagName, options, callback) {
     var cleanup = fun.once(function () {
         node.onload = node.onerror = node.onreadystatechange = null;
 
-        if (options.destroy) {
+        if (!isImageNode && options.destroy) {
             doc.body.removeChild(node);
         }
 
